@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page - View PGs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Available PGs</h1>
+        <div id="pgList" class="row g-4"></div>
+    </div>
+
+    <script>
+        async function fetchPGs() {
+            const response = await fetch('http://localhost:5000/api/pgs');
+            const pgs = await response.json();
+            const pgList = document.getElementById('pgList');
+
+            pgs.forEach(pg => {
+                pgList.innerHTML += `
+                    <div class="col-md-4">
+                        <div class="card shadow">
+                            <img src="http://localhost:5000${pg.photo}" class="card-img-top" alt="${pg.title}">
+                            <div class="card-body">
+                                <h5 class="card-title">${pg.title}</h5>
+                                <p class="card-text">${pg.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        fetchPGs();
+    </script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html> -->
+<!-- <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page - View PGs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Available PGs</h1>
+
+        Loading Spinner
+        <div id="loading" class="text-center">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+         PG Cards List
+        <div id="pgList" class="row g-4"></div>
+    </div>
+
+    <script>
+        async function fetchPGs() {
+            const loading = document.getElementById('loading');
+            const pgList = document.getElementById('pgList');
+            loading.style.display = 'block'; // Show loading spinner
+
+            try {
+                const response = await fetch('http://localhost:5000/api/pgs');
+                const pgs = await response.json();
+
+                if (pgs.length === 0) {
+                    pgList.innerHTML = `<p class="text-center">No PGs available currently.</p>`;
+                    return;
+                }
+
+                pgs.forEach(pg => {
+                    // Check if the photo is available, otherwise use a fallback image
+                    const photoUrl = pg.photo ? `http://localhost:5000${pg.photo}` : 'https://via.placeholder.com/150';
+                    pgList.innerHTML += `
+                        <div class="col-md-4">
+                            <div class="card shadow">
+                                <img src="${photoUrl}" class="card-img-top" alt="${pg.title}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${pg.title}</h5>
+                                    <p class="card-text">${pg.description}</p>
+                                    <p><strong>Location:</strong> ${pg.location}</p>
+                                    <p><strong>Rent:</strong> ₹${pg.rent}</p>
+                                    <p><strong>Room Type:</strong> ${pg.roomType}</p>
+                                    <p><strong>Gender Preference:</strong> ${pg.gender}</p>
+                                    <p><strong>Facilities:</strong> ${pg.facilities}</p>
+                                    <a href="pg-details.html?id=${pg.id}" class="btn btn-primary">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            } catch (error) {
+                console.error('Error fetching PGs:', error);
+                pgList.innerHTML = `<p class="text-center text-danger">Failed to load PGs. Please try again later.</p>`;
+            } finally {
+                loading.style.display = 'none'; // Hide loading spinner
+            }
+        }
+
+        fetchPGs();
+    </script>
+</body>
+</html>  -->
+

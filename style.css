@@ -1,0 +1,132 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  
+  
+  header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 2.5em;
+  }
+  
+  p {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  /* Room Container */
+  .room-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 50px;
+  }
+  
+  .room {
+    width: 30%;
+    margin: 50px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .room:hover {
+    transform: scale(1.05);
+  }
+  
+  .room-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .room-details {
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .room-details h2 {
+    font-size: 1.8em;
+  }
+  
+  .room-details .description {
+    color: #555;
+  }
+  
+  .details-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+  }
+  
+  .details-btn:hover {
+    background-color: #45a049;
+  }
+  
+  /* Popup Styling */
+  .popup {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 600px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .popup-content h2 {
+    margin: 0 0 20px;
+  }
+  
+  .popup-content h3 {
+    margin-top: 20px;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+  
+  
+  
+  /* Animation */
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  
+  
+  body {
+    animation: fadeIn 1s ease-out;
+  }
